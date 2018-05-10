@@ -10,7 +10,7 @@ class system_users::admins {
 	
 	user {'admin':
 		group => 'staff',
-		shell => '/bin/csh',
+		shell => '/bin/csh/',
 		require => Package['csh']
 	}
 }
