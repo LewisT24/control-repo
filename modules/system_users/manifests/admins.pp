@@ -1,20 +1,20 @@
 class system_users::admins {
   group {'staff':
-  ensure  => present,
+  ensure   => present,
   }
   if $facts['kernal'] == 'windows'{
   user {'admin':
-  group   => 'staff',
+  groups   => 'staff',
   }
   }
   else {
   package {'csh':
-  ensure  => latest,
+  ensure   => latest,
   }
   user {'admin':
-  group   => 'staff',
-  shell   => '/bin/csh/',
-  require => Package['csh']
+  groups   => 'staff',
+  shell    => '/bin/csh/',
+  require  => Package['csh']
   }
 }
 }
