@@ -21,7 +21,7 @@ class nginx (
       ensure  => running,
       require => Package['nginx'],
     }
-    
+
     file { $docroot:
       owner   => 'www-data',
       group   => 'www-data',
@@ -29,22 +29,13 @@ class nginx (
       recurse => true,
       require => Package['nginx'],
     }
-  
+
     file { "${docroot}/index.html":
       owner  => 'www-data',
       group  => 'www-data',
       mode   => '0755',
       source => "puppet:///modules/${module_name}/index.html",
       require => File["${docroot}"],
-    }
-  } else {
-    notify { 'Negative Nancy': }
-    include chocolatey
-
-    package { 'nginx':
-      provider => 'chocolatey',
-    }
-  } 
-
-
+ }
 }
+
